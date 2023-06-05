@@ -1,0 +1,17 @@
+<p-button label="Add Category" icon="pi pi-plus" routerLink="add-category"></p-button>
+
+
+<ul>
+  <div *ngFor="let category of categories">
+    <li>
+      <h3>{{ category.name }}</h3>
+      <p> {{category.description}}</p>
+      <img width="250" src={{category.image}}>
+      <div>
+        <button pButton label="Info" icon="pi pi-eye"></button>
+      </div>
+
+    </li>
+  </div>
+
+</ul>
