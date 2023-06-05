@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -30,19 +31,21 @@ export class HeaderComponent implements OnInit {
 ];
   isLoggedIn = false;
 
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.isLoggedIn);
-
     this.auth.loggedIn$.subscribe((loggedIn)=> {
       this.isLoggedIn = loggedIn;
+      if (!loggedIn) {
+        this.router.navigateByUrl("sign-in");
+      }
     });
   }
 
   public signOutClicked(){
     console.log("ASKL:DHQAIOLWHD");
     this.auth.logout();
+    this.router.navigateByUrl("");
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { LoginDto } from 'src/app/_models/loginDto.model';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -14,12 +15,12 @@ export class SignInComponent implements OnInit {
     email: new FormControl(""),
     password: new FormControl(""),
   });
-  constructor(private auth:AuthService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  onSignIn(){
+  onSignIn() {
     this.auth.login(this.signinForm.value as LoginDto);
   }
 

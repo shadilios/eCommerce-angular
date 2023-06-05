@@ -7,17 +7,20 @@ import { SignUpRoleComponent } from './_components/general/sign-up-role/sign-up-
 import { CategoriesListComponent } from './_components/categories/categories-list/categories-list.component';
 import { ProductsListComponent } from './_components/products/products-list/products-list.component';
 import { CategoryAddComponent } from './_components/categories/category-add/category-add.component';
+import { AuthGuardService } from './_services/auth-guard.service';
 
 const routes: Routes = [
-  {path:'',component: HomeComponent},
-  {path:'sign-in',component: SignInComponent},
-  {path:'sign-up',component: SignUpComponent},
-  {path:'register-role',component: SignUpRoleComponent},
-  {path:'categories',children:[
-    {path:'',component: CategoriesListComponent},
-    {path:'add-category',component: CategoryAddComponent},
-  ]},
-  {path:'products',component:ProductsListComponent},
+  { path: '', component: HomeComponent },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'register-role', component: SignUpRoleComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'categories', children: [
+      { path: '', component: CategoriesListComponent },
+      { path: 'add-category', component: CategoryAddComponent },
+    ]
+  },
+  { path: 'products', component: ProductsListComponent },
 ];
 
 @NgModule({

@@ -6,9 +6,9 @@
 
   <button *ngIf="!isLoggedIn" pButton label="Sign in" icon="pi pi-sign-in" routerLink="sign-in"></button>
   <button *ngIf="isLoggedIn" pButton label="Sign Out" (click)="signOutClicked()" clic class="p-button-danger" icon="pi pi-sign-out"></button>
-  <!-- <button pButton label="Register Role" class="p-button-warning" icon="pi pi-key" routerLink="register-role"></button> -->
+  <button pButton label="Register Role" class="p-button-warning" icon="pi pi-key" routerLink="register-role"></button>
 
-
+<p>{{isLoggedIn}}</p>
 
 </p-menubar>
 

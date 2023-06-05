@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -21,6 +21,7 @@ import { SignUpRoleComponent } from './_components/general/sign-up-role/sign-up-
 import { HomeComponent } from './_components/general/home/home.component';
 import { ProductsListComponent } from './_components/products/products-list/products-list.component';
 import { CategoryAddComponent } from './_components/categories/category-add/category-add.component';
+import { TokenInterceptor } from './_interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import { CategoryAddComponent } from './_components/categories/category-add/cate
     ReactiveFormsModule,
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
