@@ -1,0 +1,13 @@
+<p-dialog
+  header="Delete Request"
+  [closable]="false"
+  [draggable]="true"
+  [modal]="true"
+  [visible]="displayDialog"
+>
+  Are you sure you want
+  <ng-template pTemplate="footer">
+    <p-button (onClick)="respond(true)">YES</p-button>
+    <p-button (onClick)="respond(false)">NO</p-button>
+  </ng-template>
+</p-dialog>

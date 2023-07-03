@@ -1,1 +1,30 @@
 <p>sign-up-role works!</p>
+
+<div>
+  <label>Role: </label>
+  <select [(ngModel)]="signUpFor" >
+    <option value="admin">Admin</option>
+    <option value="editor">Editor</option>
+  </select>
+</div>
+
+<form action="" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+
+  <div>
+    <label>Username</label>
+    <input type="text" formControlName="username">
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="text" formControlName="email">
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+  </div>
+
+
+<p-button type="submit"> Submit </p-button>
+</form>

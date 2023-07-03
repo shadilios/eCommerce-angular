@@ -1,0 +1,11 @@
+<h3>{{link}}</h3>
+<img src="{{icon}}" alt="" height="25px">
+
+<div>
+  <span (click)="changeFavorite()">
+    <i *ngIf="!isFavorite" class="pi pi-heart"></i>
+    <i *ngIf="isFavorite" class="pi pi-heart-fill"></i>
+  </span>
+</div>
+
+

@@ -1,0 +1,27 @@
+<p-card *ngIf="product">
+
+  <h3>{{ product.name }}</h3>
+  <img width="150" src="{{ product.image }}" alt="" />
+  <p>{{ product.description }}</p>
+
+  <ng-container *ngIf="isOnSale">
+    <p class="inline">$</p>
+    <p class="inline">
+      <s> {{ product.price }} </s>
+    </p>
+    <p class="inline">{{ discountPrice }}</p>
+  </ng-container>
+
+  <ng-container *ngIf="!isOnSale">
+    <p class="inline">$</p>
+    <p class="inline">{{ product.price }}</p>
+  </ng-container>
+
+  <ng-template pTemplate="footer">
+    <!-- <button *ngIf="isUser || isEditor || isAdmin" pButton>Add To Cart</button> -->
+    <button *ngIf="isEditor || isAdmin" pButton label="Edit" class="p-button-warning" icon="pi pi-pencil"></button>
+    <button *ngIf="isAdmin" pButton class="p-button-danger" icon="pi pi-delete-left" label="Delete"
+      (click)="onDelete()"></button>
+  </ng-template>
+
+</p-card>

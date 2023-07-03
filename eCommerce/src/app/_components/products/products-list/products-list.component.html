@@ -1,1 +1,19 @@
-<p>products-list works!</p>
+<p-button
+  *ngIf="isAdmin || isEditor"
+  label="Add Product"
+  icon="pi pi-plus"
+  routerLink="/products/add-product"
+></p-button>
+
+<app-product
+  *ngFor="let product of products"
+  [product]="product"
+  [isUser]="isUser"
+  [isEditor]="isEditor"
+  [isAdmin]="isAdmin"
+  (productDeletedEvent)="onDeleteReceiver($event)"
+></app-product>
+<app-confirm-dialog
+  [displayDialog]="showChildDialog"
+  (responseEmitter)="responseReceiver($event)"
+></app-confirm-dialog>

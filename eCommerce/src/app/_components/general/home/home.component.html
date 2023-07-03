@@ -1,3 +1,11 @@
-<h1>Welcome To Home Page</h1>
+<h3>Welcome To Home Page</h3>
 
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ea perspiciatis eveniet! Unde illo quo optio reiciendis adipisci autem quia explicabo? Voluptates consequatur harum eos quasi est molestias? Architecto, eum? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id est sequi, eligendi rerum quaerat voluptatibus facilis ab asperiores et commodi praesentium accusamus, repudiandae inventore? Natus quod laudantium et quam inventore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus similique accusantium dicta omnis sapiente esse ipsa veniam accusamus repudiandae aliquam obcaecati, illum aperiam ducimus aspernatur iusto id maiores dolor quos.</p>
+
+
+<div *ngFor="let item of myLinks">
+
+<app-my-link [link]="item.link" [icon]="item.icon" [isFavorite]="item.isFavorite" (change)="onFavoriteChanged($event)"></app-my-link>
+
+
+</div>

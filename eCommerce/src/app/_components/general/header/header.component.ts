@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { AuthService } from 'src/app/_services/auth.service';
+import { UserRolesService } from 'src/app/_services/user-roles.service';
 
 @Component({
   selector: 'app-header',
@@ -17,35 +18,75 @@ export class HeaderComponent implements OnInit {
 
     },
     {
-        label: 'Categories',
-        icon:PrimeIcons.MICROSOFT,
-        routerLink:'categories'
+      label: 'Categories',
+      icon: PrimeIcons.MICROSOFT,
+      routerLink: 'categories'
 
     },
     {
-        label: 'Products',
-        icon: PrimeIcons.BOX,
-        routerLink: 'products'
+      label: 'Products',
+      icon: PrimeIcons.BOX,
+      routerLink: 'products'
 
     }
-];
+  ];
   isLoggedIn = false;
 
-  constructor(private auth : AuthService, private router: Router) { }
+  isAdmin = false;
+  isEditor = false;
+  isUser = false;
+
+  roles = [""];
+
+  constructor(private auth: AuthService, private router: Router, private rolesService: UserRolesService) { }
 
   ngOnInit(): void {
-    this.auth.loggedIn$.subscribe((loggedIn)=> {
-      this.isLoggedIn = loggedIn;
-      if (!loggedIn) {
-        this.router.navigateByUrl("sign-in");
-      }
-    });
+    this.getLoggedIn();
+    this.getRoles();
   }
 
-  public signOutClicked(){
-    console.log("ASKL:DHQAIOLWHD");
+  getLoggedIn() {
+    this.auth.loggedIn$.subscribe(
+      (loggedIn) => {
+        this.isLoggedIn = loggedIn;
+        this.isUser = true;
+        if (!loggedIn) {
+          this.router.navigateByUrl("sign-in");
+        }
+      });
+  }
+
+  getRoles() {
+    this.resetConditions();
+    this.rolesService.loggedRoles$.subscribe(
+      (roles) => {
+        this.roles = roles;
+        this.setConditions(this.roles);
+      }
+    );
+  }
+
+  public signOutClicked() {
     this.auth.logout();
+    this.rolesService.loggedOut();
     this.router.navigateByUrl("");
+  }
+
+  setConditions(roles: string[]) {
+    if (roles.includes("Admin"))
+      this.isAdmin = true;
+    if (roles.includes("Editor"))
+      this.isEditor = true;
+    if (roles.includes("User"))
+      this.isUser = true;
+    else
+      this.resetConditions();
+  }
+
+  resetConditions() {
+    this.isAdmin = false;
+    this.isEditor = false;
+    this.isUser = false;
   }
 
 }

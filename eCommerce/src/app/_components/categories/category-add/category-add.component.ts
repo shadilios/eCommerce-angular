@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CategoryDto } from 'src/app/_models/categoryDto.model';
+import { CategoryDto } from 'src/app/_models/category/categoryDto.model';
 import { CategoriesService } from 'src/app/_services/categories.service';
 
 @Component({
@@ -23,8 +23,6 @@ export class CategoryAddComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.categoryForm.value as CategoryDto);
-
     this.categories_service.postCategory(this.categoryForm.value as CategoryDto).subscribe({
       complete: () => {
         this.resetForm();

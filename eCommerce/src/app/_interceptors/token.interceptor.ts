@@ -9,11 +9,12 @@ import {
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { LocalStorageService } from '../_services/local-storage.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private storage: LocalStorageService, private router: Router) { }
+  constructor(private storage: LocalStorageService, private router: Router, private auth: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     var token = this.storage.getData("token");
@@ -24,11 +25,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(newRequest).pipe(
       catchError((error: HttpErrorResponse) => {
+        // If response is 401 Unauthorized
         if (error.status === 401) {
-          // If response is 401 Unauthorized, navigate to login screen
+          this.auth.logout();
+          //navigate to login screen
           this.router.navigateByUrl("/sign-in");
-          // And delete token from local storage
-          this.storage.removeData("token");
         }
         // else, rethrow the error
         return throwError(error);

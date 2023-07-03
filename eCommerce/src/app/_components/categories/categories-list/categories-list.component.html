@@ -1,17 +1,18 @@
-<p-button label="Add Category" icon="pi pi-plus" routerLink="add-category"></p-button>
-
+<p-button *ngIf="isAdmin || isEditor" label="Add Category" icon="pi pi-plus" routerLink="/categories/add-category"></p-button>
 
 <ul>
   <div *ngFor="let category of categories">
     <li>
       <h3>{{ category.name }}</h3>
-      <p> {{category.description}}</p>
-      <img width="250" src={{category.image}}>
+      <p>{{ category.description }}</p>
+      <img width="250" src="{{ category.image }}" alt="" />
       <div>
-        <button pButton label="Info" icon="pi pi-eye"></button>
+        <button pButton label="Info" icon="pi pi-eye" (click)="infoClicked(category.id)"></button>
+        <button *ngIf="isAdmin || isEditor" pButton label="Edit" class="p-button-warning" icon="pi pi-pencil"
+          (click)="editClicked(category, category.id)"></button>
+        <button *ngIf="isAdmin" pButton label="Delete" class="p-button-danger" icon="pi pi-delete-left"
+          (click)="deleteClicked(category.id)"></button>
       </div>
-
     </li>
   </div>
-
 </ul>

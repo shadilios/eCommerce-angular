@@ -2,6 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
+/** FOR MODALS TO WORK */
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DialogModule } from "primeng/dialog";
+/** */
+
+import {CardModule} from 'primeng/card';
+
+
 import { MenuItem } from 'primeng/api';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +30,14 @@ import { HomeComponent } from './_components/general/home/home.component';
 import { ProductsListComponent } from './_components/products/products-list/products-list.component';
 import { CategoryAddComponent } from './_components/categories/category-add/category-add.component';
 import { TokenInterceptor } from './_interceptors/token.interceptor';
+import { MyLinkComponent } from './_components/my-link/my-link.component';
+import { NotFoundComponent } from './_components/general/not-found/not-found.component';
+import { UnauthorizedComponent } from './_components/general/unauthorized/unauthorized.component';
+import { ProductAddComponent } from './_components/products/product-add/product-add.component';
+import { ProductEditComponent } from './_components/products/product-edit/product-edit.component';
+import { ProductViewComponent } from './_components/products/product-view/product-view.component';
+import { ProductComponent } from './_components/products/product/product.component';
+import { ConfirmDialogComponent } from './_components/general/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +52,15 @@ import { TokenInterceptor } from './_interceptors/token.interceptor';
     SignUpRoleComponent,
     HomeComponent,
     ProductsListComponent,
-    CategoryAddComponent
-
+    CategoryAddComponent,
+    MyLinkComponent,
+    NotFoundComponent,
+    UnauthorizedComponent,
+    ProductAddComponent,
+    ProductEditComponent,
+    ProductViewComponent,
+    ProductComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,10 +70,13 @@ import { TokenInterceptor } from './_interceptors/token.interceptor';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    DialogModule,
+    CardModule,
 
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

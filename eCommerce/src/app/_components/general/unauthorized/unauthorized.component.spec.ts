@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignUpRoleComponent } from './sign-up-role.component';
+import { UnauthorizedComponent } from './unauthorized.component';
 
-describe('SignUpRoleComponent', () => {
-  let component: SignUpRoleComponent;
-  let fixture: ComponentFixture<SignUpRoleComponent>;
+describe('UnauthorizedComponent', () => {
+  let component: UnauthorizedComponent;
+  let fixture: ComponentFixture<UnauthorizedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignUpRoleComponent ]
+      declarations: [ UnauthorizedComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SignUpRoleComponent);
+    fixture = TestBed.createComponent(UnauthorizedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
