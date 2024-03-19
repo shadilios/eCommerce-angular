@@ -38,6 +38,7 @@ import { ProductEditComponent } from './_components/products/product-edit/produc
 import { ProductViewComponent } from './_components/products/product-view/product-view.component';
 import { ProductComponent } from './_components/products/product/product.component';
 import { ConfirmDialogComponent } from './_components/general/confirm-dialog/confirm-dialog.component';
+import { SignInTwitterComponent } from './_components/general/sign-in-twitter/sign-in-twitter.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ConfirmDialogComponent } from './_components/general/confirm-dialog/con
     ProductViewComponent,
     ProductComponent,
     ConfirmDialogComponent,
+    SignInTwitterComponent,
   ],
   imports: [
     BrowserModule,

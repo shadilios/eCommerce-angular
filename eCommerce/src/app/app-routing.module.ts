@@ -15,10 +15,14 @@ import { RolesGuardService } from './_services/roles-guard.service';
 import { ProductEditComponent } from './_components/products/product-edit/product-edit.component';
 import { ProductAddComponent } from './_components/products/product-add/product-add.component';
 import { ProductComponent } from './_components/products/product/product.component';
+import { SignInTwitterComponent } from './_components/general/sign-in-twitter/sign-in-twitter.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'sign-in', component: SignInComponent },
+
+  {
+    path: 'sign-in', component: SignInComponent,
+  },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'register-role', component: SignUpRoleComponent, canActivate: [AuthGuardService, RolesGuardService], data: { roles: ["Admin"] } },
   {
@@ -30,13 +34,14 @@ const routes: Routes = [
           { path: ':id', component: CategoryEditComponent, canActivate: [AuthGuardService, RolesGuardService], data: { roles: ["Admin", "Editor"] } },
         ]
       },
+      {path: 'twitter', component: SignInTwitterComponent}
 
     ]
   },
   {
     path: 'products', children: [
       { path: '', component: ProductsListComponent },
-      { path: 'add-product', component: ProductAddComponent , canActivate:[AuthGuardService, RolesGuardService], data: { roles: ["Admin"] }},
+      { path: 'add-product', component: ProductAddComponent, canActivate: [AuthGuardService, RolesGuardService], data: { roles: ["Admin"] } },
       { path: 'category/:categoryId', component: ProductsListComponent },
       {
         path: 'edit-product', children: [
